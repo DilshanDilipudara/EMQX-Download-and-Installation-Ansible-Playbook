@@ -1,0 +1,6 @@
+---
+- name: check the host are available
+  ansible.builtin.ping: 
+  tags:
+  - log_debug
+  - ping

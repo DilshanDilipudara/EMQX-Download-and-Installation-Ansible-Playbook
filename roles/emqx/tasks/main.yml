@@ -1,0 +1,11 @@
+---
+# tasks file for /etc/ansible/roles/emqx
+- import_tasks: ping.yml 
+- import_tasks: binary_link.yml
+- import_tasks: emqx_install.yml
+- import_tasks: emqx_configuration.yml
+- import_tasks: emqx_license.yml
+- import_tasks: emqx_start.yml
+- import_tasks: emqx_cluster.yml
+- import_tasks: emqx_restart.yml
+- import_tasks: pushgateway_install.yml

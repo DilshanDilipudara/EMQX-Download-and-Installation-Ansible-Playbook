@@ -1,0 +1,47 @@
+---
+- name: Download EMQX '{{ emqx_version }}' for '{{ os_version }}'
+  ansible.builtin.get_url:
+    url: "{{ emqx_download_link }}"
+    dest: "{{ emqx_download_path }}"
+    mode: '{{ emqx_download_mode }}'
+  register: emqx_binary_downloand_logs
+  tags:
+    - log_debug
+    - log_info
+
+- name: emqx download logs
+  debug:
+   msg: "{{ emqx_binary_downloand_logs }}"
+  tags: 
+    - log_debug
+
+- name: list file in "{{ emqx_download_path }}" 
+  ansible.builtin.command: ls "{{ emqx_download_path }}"
+  register: list_emqx_file_path
+  tags: 
+    - log_debug
+
+- name: list the  binary in "{{ emqx_download_path }}" 
+  debug:
+   msg: "{{ list_emqx_file_path }}"
+  tags: 
+    - log_debug 
+
+- name: Install emqx 
+  ansible.builtin.command: "{{ item }}"
+  register: logs_install_binary
+  with_items:
+    - sudo apt-get update
+    - sudo apt-get install libodbc1
+    - sudo dpkg -i "{{ emqx_binary_name }}"
+  tags: 
+   - log_debug
+   - log_info
+
+- name: logs  Install emqx
+  debug:
+   msg: "{{ logs_install_binary }}"
+  tags: 
+    - log_debug 
+
+

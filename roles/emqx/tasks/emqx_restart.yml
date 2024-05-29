@@ -1,0 +1,13 @@
+- name: Restart emqx
+  ansible.builtin.systemd:
+    state: restarted
+    name: emqx
+  register: logs_restart_emqx
+  tags: 
+    - lic
+
+- name: logs  restart emqx
+  debug:
+   msg: "{{ logs_restart_emqx }}"
+  tags: 
+   - lic

@@ -1,0 +1,9 @@
+- name: Coping a license file to /etc/emqx
+  ansible.builtin.template:
+    src: ../files/emqx.lic
+    dest: /etc/emqx/emqx.lic
+    mode: '0644'
+  tags:
+    - log_info
+    - log_debug
+    - lic

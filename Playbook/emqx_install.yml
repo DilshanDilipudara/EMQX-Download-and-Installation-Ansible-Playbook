@@ -1,0 +1,8 @@
+---
+- name: emqx # playbook name
+  hosts: emqx # The group hostname is defined in hosts.yaml
+  become: yes
+  roles:
+    - role: emqx  # /roles dir role name
+      tags:
+        - test 

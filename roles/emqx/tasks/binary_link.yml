@@ -1,0 +1,12 @@
+---
+- name: Print emqx binary link 
+  ansible.builtin.debug:
+    msg: "{{ emqx_download_link }}"
+  tags: 
+    - log_debug
+
+- name: print emqx binary link 
+  ansible.builtin.debug:
+    msg: "{{ pushgateway_download_link }}"
+  tags: 
+    - log_debug

@@ -1,0 +1,64 @@
+---
+- name: Download pushgateway '{{ pushgateway_version }}'
+  ansible.builtin.get_url:
+    url: "{{ pushgateway_download_link }}"
+    dest: "{{ pushgateway_download_path }}"
+    mode: '{{ pushgateway_download_mode }}'
+  register: pushgateway_binary_downloand_logs
+  tags:
+    - log_debug
+    - log_info
+    - pushgateway
+
+- name:  pushgateway download logs
+  debug:
+   msg: "{{ pushgateway_binary_downloand_logs }}"
+  tags: 
+    - log_debug
+
+- name: Install pushgateway 
+  ansible.builtin.command: "{{ item }}"
+  register: logs_install_pushgateway_binary
+  with_items:
+    - sudo tar xvfz {{ pushgateway_binary_name }}.tar.gz
+    - sudo cp -pr {{ pushgateway_binary_name }}/pushgateway /usr/local/bin/
+    - sudo useradd -M -r -s /bin/false pushgateway  #r - system user # s - shell #M create a user without home dir
+    - sudo chown pushgateway:pushgateway /usr/local/bin/pushgateway
+  tags: 
+   - log_debug
+   - log_info
+   - pushgateway
+
+- name: logs  Install emqx
+  debug:
+   msg: "{{ logs_install_pushgateway_binary }}"
+  tags: 
+    - log_debug
+
+- name: Copying file to /etc/systemd/system
+  ansible.builtin.template:
+    src: ../templates/pushgateway_service.j2
+    dest: /etc/systemd/system/pushgateway.service
+    mode: '0644'
+  tags:
+    - log_debug
+    - log_info
+    - pushgateway
+
+- name: enable pushgateway
+  ansible.builtin.systemd:
+    enabled: true
+    name: pushgateway
+  tags: 
+    - log_debug
+    - log_info
+    - pushgateway
+
+- name: enable pushgateway
+  ansible.builtin.systemd:
+    state: started
+    name: pushgateway
+  tags: 
+    - log_debug
+    - log_info
+    - pushgateway

@@ -1,0 +1,7 @@
+---
+- name: Create emqx cluster
+  ansible.builtin.command: emqx_ctl cluster join emqx@{{ item }}
+  loop: "{{ ansible_play_hosts }}"
+  tags: 
+    - log_debug
+    - log_info  

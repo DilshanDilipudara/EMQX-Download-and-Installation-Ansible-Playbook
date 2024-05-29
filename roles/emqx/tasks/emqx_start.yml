@@ -1,0 +1,14 @@
+- name: Start emqx
+  ansible.builtin.systemd:
+    state: started
+    name: emqx
+  register: logs_start_emqx
+  tags: 
+    - log_debug
+    - log_info
+
+- name: logs  start emqx
+  debug:
+   msg: "{{ logs_start_emqx }}"
+  tags: 
+   - log_debug

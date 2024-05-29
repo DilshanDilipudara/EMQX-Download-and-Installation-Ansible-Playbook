@@ -1,0 +1,50 @@
+---
+# defaults file for /etc/ansible/roles/emqx
+os_version: "ubuntu20.04"
+emqx_version: "4.4.18"
+emqx_binary_name: "emqx-ee-{{ emqx_version }}-otp24.3.4.2-1-{{ os_version }}-amd64.deb"
+emqx_download_link: "https://www.emqx.com/en/downloads/enterprise/{{ emqx_version }}/{{ emqx_binary_name }}"
+emqx_download_path: "/home/ansible"
+emqx_download_mode: '0755'
+
+#emqx.j2
+node_async_threads: ''
+node_process_limit: ''
+node_max_ports: ''
+node_max_ets_tables: ''
+node_dist_net_ticktime: ''
+access_allow_anonymous: ''
+access_acl_nomatch: ''
+access_enable_acl_cache: ''
+access_acl_deny_action: ''
+mqtt_max_topic_levels: ''
+mqtt_max_topic_alias: ''
+
+#emqx_bridge_kafka.j2
+bridge_kafka_servers: ''
+
+#emqx_backend_mysql.j2
+backend_mysql_pool1_server: '127.0.0.1:3306'
+backend_mysql_pool1_user: 'root'
+backend_mysql_pool1_password: 'public'
+backend_mysql_pool1_database: 'mqtt'
+
+#emqx_auth_mysql.j2
+auth_mysql_server: '127.0.0.1:3306'
+auth_mysql_username: ''  #uncomment line
+auth_mysql_password: ''  #uncomment  line
+auth_mysql_database: 'mqtt'
+
+#pushgateway
+pushgateway_version: '1.5.1'
+pushgateway_binary_name: 'pushgateway-{{ pushgateway_version }}.linux-amd64'
+pushgateway_download_link: 'https://github.com/prometheus/pushgateway/releases/download/v{{ pushgateway_version }}/{{ pushgateway_binary_name }}.tar.gz'
+pushgateway_download_path: '/home/ansible'
+pushgateway_download_mode: '0755'
+
+
+
+
+
+
+

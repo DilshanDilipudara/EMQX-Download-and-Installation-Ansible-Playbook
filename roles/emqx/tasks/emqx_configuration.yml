@@ -1,0 +1,45 @@
+---
+- name: Copying file to /etc/emqx/acl.conf
+  ansible.builtin.template:
+    src: ../templates/acl.j2
+    dest: /etc/emqx/acl.conf
+    mode: '0644'
+  tags:
+    - log_debug
+    - log_info
+
+- name: Copying file to /etc/emqx/emqx.conf
+  ansible.builtin.template:
+    src: ../templates/emqx.j2
+    dest: /etc/emqx/emqx.conf
+    mode: '0644'
+  tags:
+    - log_debug
+    - log_info
+
+- name: Copying file to /etc/emqx/plugins
+  ansible.builtin.template:
+    src: ../templates/emqx_bridge_kafka.j2
+    dest: /etc/emqx/plugins/emqx_bridge_kafka.conf
+    mode: '0644'
+  tags:
+    - log_debug
+    - log_info
+
+- name: Copying file to /etc/emqx/plugins
+  ansible.builtin.template:
+    src: ../templates/emqx_backend_mysql.j2
+    dest: /etc/emqx/plugins/emqx_backend_mysql.conf
+    mode: '0644'
+  tags:
+    - log_debug
+    - log_info
+
+# - name: Copying file to /etc/emqx/plugins
+#   ansible.builtin.template:
+#     src: ../templates/emqx_auth_mysql.j2
+#     dest: /etc/emqx/plugins/emqx_auth_mysql.conf
+#     mode: '0644'
+#   tags:
+#     - log_debug
+#     - log_info
