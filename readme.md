@@ -22,7 +22,7 @@ This Ansible playbook is designed to automate the download and installation proc
 
 
 
-## Playbook Tasks
+## EMQX Playbook Tasks
 
 1. **Download EMQX Binary**: Downloads the EMQX binary from the specified URL to the target system.
 
@@ -40,7 +40,7 @@ This Ansible playbook is designed to automate the download and installation proc
 6. **Debug Installation Logs**: Displays debug information about the EMQX installation process.
 
 
-## Playbook Tasks
+##  Pushgateway Playbook Tasks
 
 1. **Download Pushgateway Binary**: Downloads the Pushgateway binary from the specified URL to the target system.
 
